@@ -5,6 +5,7 @@ import { Upload } from 'lucide-react';
 function App() {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const [showTip, setShowTip] = useState<boolean>(true);
 
   const handleFileUpload = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -17,19 +18,30 @@ function App() {
           // Here you would use a library like heic2any to convert HEIC to JPEG
           // For this example, we'll just use a placeholder
           setImageUrl('https://via.placeholder.com/300x300.jpg?text=HEIC+Image');
+          setShowTip(false);
         };
         reader.readAsArrayBuffer(file);
       } else if (file.type === 'image/jpeg' || file.type === 'image/png') {
         setImageUrl(URL.createObjectURL(file));
+        setShowTip(false);
       } else if (file.type === 'video/quicktime' || file.type === 'video/mp4') {
         setVideoUrl(URL.createObjectURL(file));
+        setShowTip(false);
       }
     }
   }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
+      <h3 className="absolute top-4 left-4 text-xl font-semibold text-blue-600 shadow-lg" style={{ fontFamily: 'Pixel, sans-serif' }}>
+        {/* Lambert's Space */}
+        lamberts.space
+        {/* Welcome to Lambert's Space! */}
+      </h3>
       <h1 className="text-3xl font-bold mb-8">Live Photo Viewer</h1>
+      {showTip && (
+        <p className="text-red-500 mb-4">Tips: 请传输两个文件后才会显示 Live Photo 的效果</p>
+      )}
       {imageUrl && videoUrl ? (
         <LivePhoto imageUrl={imageUrl} videoUrl={videoUrl} />
       ) : (
