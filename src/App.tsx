@@ -50,6 +50,10 @@ function App() {
           />
         </div>
       )}
+      <footer className="mt-8 text-gray-500 text-center">
+        <p>&copy; 2024 Live Photo Viewer. All rights reserved. </p>
+        <p>Made with ❤️ by Lambert</p>
+      </footer>
     </div>
   );
 }
