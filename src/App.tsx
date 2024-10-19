@@ -38,7 +38,8 @@ function App() {
         lamberts.space
         {/* Welcome to Lambert's Space! */}
       </h3>
-      <h1 className="text-3xl font-bold mb-8">Live Photo Viewer</h1>
+      <h1 className="text-3xl font-bold mb-8">LiveLens</h1>
+      {/* <h2 className="text-xl font-semibold mb-4">The Live Photo Viewer</h2> */}
       {showTip && (
         <p className="text-red-500 mb-4">Tips: 请传输两个文件后才会显示 Live Photo 的效果</p>
       )}
